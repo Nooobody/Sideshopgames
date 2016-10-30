@@ -22,5 +22,4 @@ namespace :deploy do
   end
 
   after :publishing, :restart
-  before 'deploy:updated', 'npm:install'
 end
