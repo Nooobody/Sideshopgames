@@ -1,0 +1,31 @@
+{
+  "name": "sideshopgames",
+  "version": "1.0.0",
+  "description": "Website backend for IslandTrollTribes2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nooobody/Sideshopgames.git"
+  },
+  "keywords": [
+    "dota2",
+    "node"
+  ],
+  "author": "Nooobody",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nooobody/Sideshopgames/issues"
+  },
+  "homepage": "https://github.com/Nooobody/Sideshopgames#readme",
+  "devDependencies": {
+    "@types/node": "^6.0.46"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "pg": "^6.1.0",
+    "typescript": "^2.0.6"
+  }
+}
