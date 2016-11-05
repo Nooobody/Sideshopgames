@@ -1,5 +1,9 @@
 var express = require('express');
 var app = express();
+var secrets = require("./config/secrets");
+for (secret in secrets) {
+    process.env[secret] = secrets[secret];
+}
 var api = require("./app/api");
 app.use("/api", api);
 app.get('/', function (req, res) {

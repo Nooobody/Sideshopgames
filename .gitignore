@@ -39,3 +39,6 @@ jspm_packages
 # typescript files, only add compiled javascript
 *.ts
 tsconfig.json
+
+# secrets
+config/secrets.json

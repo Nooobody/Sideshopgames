@@ -1,14 +1,12 @@
 "use strict";
 var pg = require('pg');
-var config;
-if (!process.env.DATABASE_URL) {
-    config = {
-        host: 'localhost',
-        port: '5432',
-        user: 'postgres',
-        password: 'qwer',
-        database: 'sideshopgames_dev'
-    };
+config = {
+    host: ,
+    port: '5432',
+    user: 'postgres',
+    password: 'qwer',
+    database: 'sideshopgames_dev'
+};
 }
 else {
     config = process.env.DATABASE_URL;
