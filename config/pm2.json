@@ -2,6 +2,9 @@
   apps: [{
     name: "sideshopgames",
     script: "./index.js",
+    cwd: "/var/www/sideshopgames/current",
+    error_file: "/var/www/sideshopgames/current/logs/app.err.log",
+    out_file: "/var/www/sideshopgames/current/logs/app.out.log",
     env: {
       "NODE_ENV": "production"
     }
