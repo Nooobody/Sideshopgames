@@ -1,16 +1,12 @@
 "use strict";
 var pg = require('pg');
-config = {
-    host: ,
-    port: '5432',
-    user: 'postgres',
-    password: 'qwer',
-    database: 'sideshopgames_dev'
+var config = {
+    host: process.env.RDS_HOSTNAME,
+    port: process.env.RDS_PORT,
+    user: process.env.RDS_USERNAME,
+    password: process.env.RDS_PASSWORD,
+    database: process.env.RDS_DATABASE
 };
-}
-else {
-    config = process.env.DATABASE_URL;
-}
 function seed_db() {
     var client = new pg.Client(config);
     client.connect(function (err) {
