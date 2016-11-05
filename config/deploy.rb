@@ -17,3 +17,7 @@ set :deploy_to, '/var/www/sideshopgames'
 set :linked_files, ["config/secrets.json"]
 
 set :pm2_config, "/var/www/sideshopgames/current/config/pm2.json"
+
+namespace :pm2 do
+  after 'deploy:cleanup', :restart
+end
