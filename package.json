@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Website backend for IslandTrollTribes2",
   "main": "index.js",
-  "scripts": {
-    "postinstall": "pm2 restart index.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Nooobody/Sideshopgames.git"
