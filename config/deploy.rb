@@ -19,6 +19,13 @@ set :linked_files, ["config/secrets.json", "config/pm2.json"]
 set :pm2_config, "/var/www/sideshopgames/shared/config/pm2.json"
 
 namespace :pm2 do
-  after 'deploy:updated', :stop
+  task :restart do
+    on roles(:web) do
+      within current_path do
+        execute :pm2, 'restart', fetch(:pm2_config)
+      end
+    end
+  end
+
   after 'deploy:updated', :restart
 end
