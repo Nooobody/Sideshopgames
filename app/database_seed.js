@@ -45,7 +45,7 @@ function seed_db() {
                     console.log("Heroes played already exist");
                 }
                 ;
-                var query = client.query("\n              CREATE TABLE player_friends(\n                player_id PRIMARY KEY\n                friend_id FOREIGN KEY\n              )", function (err, result) {
+                var query = client.query("\n              CREATE TABLE player_friends(\n                player_id INTEGER PRIMARY KEY\n                friend_id INTEGER FOREIGN KEY\n              )", function (err, result) {
                     if (err) {
                         console.log("Friends already exist");
                     }
