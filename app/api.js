@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var db_seed = require('./database_seed').seed_db;
+var db = require('./database_seed');
+var db_seed = db.seed_db;
+var db_drop = db.drop_db;
 var bodyParser = require('body-parser');
 var parseUrlencoded = bodyParser.urlencoded({ extended: false });
 router.route('/update_players')
@@ -21,5 +23,10 @@ router.route('/database_seed')
     .get(function (req, res) {
     db_seed();
     res.send("Database has been seeded");
+});
+router.route('/database_drop')
+    .get(function (req, res) {
+    db_drop();
+    res.send("Database has been dropped!");
 });
 module.exports = router;

@@ -7,6 +7,14 @@ var config = {
     password: process.env.RDS_PASSWORD,
     database: process.env.RDS_DATABASE
 };
+function drop_db() {
+    client.query('DROP TABLE players, heroes_played, player_friends', function (err) {
+        if (err)
+            throw err;
+        console.log("Tables have been dropped!");
+    });
+}
+exports.drop_db = drop_db;
 function seed_db() {
     console.log("Starting to seed the database.");
     console.log("With the following config: ");
@@ -16,7 +24,7 @@ function seed_db() {
         if (err)
             throw err;
         console.log("Connected to client!");
-        client.query("CREATE TABLE players(\n        id SERIAL PRIMARY KEY,\n        steamid VARCHAR(30) not null,\n        name VARCHAR(40) not null,\n        exp BIGINT,\n        kills INTEGER,\n        wins INTEGER,\n        assists INTEGER,\n        deaths INTEGER,\n        total_games INTEGER,\n        buildings_built INTEGER,\n        buildings_razed INTEGER,\n        animals_killed INTEGER\n      )", function (err, result) {
+        client.query("CREATE TABLE players(\n        id SERIAL PRIMARY KEY,\n        steamid VARCHAR(30) not null,\n        name VARCHAR(40),\n        nick VARCHAR(40),\n        exp BIGINT,\n        kills INTEGER,\n        wins INTEGER,\n        assists INTEGER,\n        deaths INTEGER,\n        total_games INTEGER,\n        buildings_built INTEGER,\n        buildings_razed INTEGER,\n        animals_killed INTEGER\n      )", function (err, result) {
             if (err) {
                 console.log("Players already exist");
             }
