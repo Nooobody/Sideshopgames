@@ -18,25 +18,23 @@ set :linked_files, ["config/secrets.json"]
 
 set :pm2_config, "/var/www/sideshopgames/current/config/pm2.json"
 
-namespace :pm2 do
-  desc 'Delete server'
-  task :delete do
-    on roles(:web) do
-      within current_path do
-        execute :pm2, 'delete', fetch(:pm2_config)
-      end
+desc 'Delete server'
+task :delete do
+  on roles(:web) do
+    within current_path do
+      execute :pm2, 'delete', fetch(:pm2_config)
     end
   end
-
-  desc 'Start server'
-  task :start do
-    on roles(:web) do
-      within current_path do
-        execute :pm2, 'start', fetch(:pm2_config)
-      end
-    end
-  end
-
-  after 'deploy:updated', :delete
-  after 'deploy:updated', :start
 end
+
+desc 'Start server'
+task :start do
+  on roles(:web) do
+    within current_path do
+      execute :pm2, 'start', fetch(:pm2_config)
+    end
+  end
+end
+
+after 'deploy:published', :delete
+after 'deploy:published', :start
