@@ -14,18 +14,29 @@ set :ssh_options, {
 }
 
 set :deploy_to, '/var/www/sideshopgames'
-set :linked_files, ["config/secrets.json", "config/pm2.json"]
+set :linked_files, ["config/secrets.json"]
 
-set :pm2_config, "/var/www/sideshopgames/shared/config/pm2.json"
+set :pm2_config, "/var/www/sideshopgames/current/config/pm2.json"
 
 namespace :pm2 do
-  task :restart do
+  desc 'Delete server'
+  task :delete do
     on roles(:web) do
       within current_path do
-        execute :pm2, 'restart', fetch(:pm2_config)
+        execute :pm2, 'delete', fetch(:pm2_config)
       end
     end
   end
 
-  after 'deploy:updated', :restart
+  desc 'Start server'
+  task :start do
+    on roles(:web) do
+      within current_path do
+        execute :pm2, 'start', fetch(:pm2_config)
+      end
+    end
+  end
+
+  after 'deploy:updated', :delete
+  after 'deploy:updated', :start
 end
