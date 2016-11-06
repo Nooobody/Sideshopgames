@@ -47,6 +47,7 @@ function seed_db() {
                 ;
                 var query = client.query("\n              CREATE TABLE player_friends(\n                player_id INTEGER PRIMARY KEY\n                friend_id INTEGER FOREIGN KEY\n              )", function (err, result) {
                     if (err) {
+                        console.log(err);
                         console.log("Friends already exist");
                     }
                     ;
