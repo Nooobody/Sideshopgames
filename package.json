@@ -7,9 +7,6 @@
     "type": "git",
     "url": "git+https://github.com/Nooobody/Sideshopgames.git"
   },
-  "scripts": {
-    "postinstall": "pm2 restart /var/www/sideshopgames/current/config/pm2.json"
-  },
   "keywords": [
     "dota2",
     "node"
