@@ -8,10 +8,17 @@ var config = {
     database: process.env.RDS_DATABASE
 };
 function drop_db() {
-    client.query('DROP TABLE players, heroes_played, player_friends', function (err) {
+    console.log("Starting to drop the tables in the database.");
+    var client = new pg.Client(config);
+    client.connect(function (err) {
         if (err)
             throw err;
-        console.log("Tables have been dropped!");
+        console.log("Connected to client!");
+        client.query('DROP TABLE players, heroes_played, player_friends', function (err) {
+            if (err)
+                throw err;
+            console.log("Tables have been dropped!");
+        });
     });
 }
 exports.drop_db = drop_db;
