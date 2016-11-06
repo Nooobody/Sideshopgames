@@ -21,6 +21,7 @@
     "@types/node": "^6.0.46"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "pg": "^6.1.0",
     "typescript": "^2.0.6"

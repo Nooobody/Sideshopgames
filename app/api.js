@@ -2,10 +2,12 @@ var express = require('express');
 var router = express.Router();
 var pg = require('pg');
 var db_seed = require('./database_seed').seed_db;
+var bodyParser = require('body-parser');
+var parseUrlencoded = bodyParser.urlencoded({ extended: false });
 router.route('/update_players')
-    .post(function (req, res) {
-      console.log(req.query);
-      res.send("Update succesful!");
+    .post(parseUrlencoded, function (req, res) {
+    console.log(req.body);
+    res.send("Update succesful!");
 });
 router.route('/get_players')
     .get(function (req, res) {
@@ -14,7 +16,6 @@ router.route('/get_players')
 });
 router.route('/get_leaderboard')
     .get(function (req, res) {
-
 });
 router.route('/database_seed')
     .get(function (req, res) {
