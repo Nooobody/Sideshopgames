@@ -30,7 +30,11 @@ function seed_db() {
                         console.log("Friends already exist");
                     }
                     ;
-                    client.end();
+                    client.end(function (err) {
+                        if (err)
+                            throw err;
+                        console.log("Connection has been closed.");
+                    });
                 });
             });
         });
