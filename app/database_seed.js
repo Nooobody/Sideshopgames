@@ -18,6 +18,11 @@ function drop_db() {
             if (err)
                 throw err;
             console.log("Tables have been dropped!");
+            client.end(function (err) {
+                if (err)
+                    throw err;
+                console.log("Connection has been closed.");
+            });
         });
     });
 }
