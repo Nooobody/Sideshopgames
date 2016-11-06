@@ -1,8 +1,8 @@
 {
   apps: [{
     name: "sideshopgames",
-    script: "./index.js",
-    cwd: "/var/www/sideshopgames/current",
+    script: "./current/index.js",
+    cwd: "/var/www/sideshopgames",
     error_file: "/var/www/sideshopgames/current/logs/app.err.log",
     out_file: "/var/www/sideshopgames/current/logs/app.out.log"
   }]

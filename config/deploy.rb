@@ -14,10 +14,11 @@ set :ssh_options, {
 }
 
 set :deploy_to, '/var/www/sideshopgames'
-set :linked_files, ["config/secrets.json"]
+set :linked_files, ["config/secrets.json", "config/pm2.json"]
 
-set :pm2_config, "/var/www/sideshopgames/current/config/pm2.json"
+set :pm2_config, "/var/www/sideshopgames/shared/config/pm2.json"
 
 namespace :pm2 do
+  after 'deploy:updated', :stop
   after 'deploy:updated', :restart
 end
