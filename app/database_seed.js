@@ -9,10 +9,13 @@ var config = {
 };
 function seed_db() {
     console.log("Starting to seed the database.");
+    console.log("With the following config: ");
+    console.log(config);
     var client = new pg.Client(config);
     client.connect(function (err) {
         if (err)
             throw err;
+        console.log("Connected to client!");
         client.query("CREATE TABLE players(\n        id SERIAL PRIMARY KEY,\n        steamid VARCHAR(30) not null,\n        name VARCHAR(40) not null,\n        exp BIGINT,\n        kills INTEGER,\n        wins INTEGER,\n        assists INTEGER,\n        deaths INTEGER,\n        total_games INTEGER,\n        buildings_built INTEGER,\n        buildings_razed INTEGER,\n        animals_killed INTEGER\n      )", function (err, result) {
             if (err) {
                 console.log("Players already exist");

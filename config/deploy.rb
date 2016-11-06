@@ -27,6 +27,13 @@ task :delete do
   end
 end
 
+desc 'Update in memory pm2'
+task :update_pm2 do
+  on roles(:web) do
+    execute :pm2, 'updatePM2'
+  end
+end
+
 desc 'Start server'
 task :start do
   on roles(:web) do
@@ -36,5 +43,6 @@ task :start do
   end
 end
 
-after 'deploy:published', :delete
-after 'deploy:published', :start
+after 'deploy:finished', :delete
+after 'deploy:finished', :update_pm2
+after 'deploy:finished', :start
