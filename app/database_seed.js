@@ -1,6 +1,6 @@
 "use strict";
 var pg = require('pg');
-var config = process.env.DB_CONFIG;
+var config = require('./util').db_config();
 function drop_db() {
     console.log("Starting to drop the tables in the database.");
     var client = new pg.Client(config);

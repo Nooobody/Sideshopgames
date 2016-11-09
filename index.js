@@ -4,18 +4,6 @@ var secrets = require("./config/secrets");
 for (secret in secrets) {
     process.env[secret] = secrets[secret];
 }
-process.env.DB_CONFIG = {
-    host: process.env.RDS_HOSTNAME,
-    port: process.env.RDS_PORT,
-    user: process.env.RDS_USERNAME,
-    password: process.env.RDS_PASSWORD,
-    database: process.env.RDS_DATABASE
-};
-console.log(process.env.RDS_HOSTNAME);
-console.log(process.env.RDS_PORT);
-console.log(process.env.RDS_USERNAME);
-console.log(process.env.RDS_PASSWORD);
-console.log(process.env.RDS_DATABASE);
 var api = require("./app/api");
 app.use("/api", api);
 app.get('/', function (req, res) {

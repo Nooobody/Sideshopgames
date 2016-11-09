@@ -1,6 +1,6 @@
 "use strict";
 var pg = require('pg');
-var config = process.env.DB_CONFIG;
+var config = require('./util').db_config();
 function check_player_existence(steamid, callback) {
     console.log("Checking player's existence.");
     console.log("With config: ");
