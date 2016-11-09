@@ -24,7 +24,8 @@ exports.drop_db = drop_db;
 function seed_db() {
     console.log("Starting to seed the database.");
     console.log("With the following config: ");
-    console.log(config);
+    console.log(config.host);
+    console.log(config.port);
     var client = new pg.Client(config);
     client.connect(function (err) {
         if (err)

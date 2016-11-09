@@ -11,6 +11,7 @@ process.env.DB_CONFIG = {
     password: process.env.RDS_PASSWORD,
     database: process.env.RDS_DATABASE
 };
+console.log(process.env.DB_CONFIG);
 var api = require("./app/api");
 app.use("/api", api);
 app.get('/', function (req, res) {
