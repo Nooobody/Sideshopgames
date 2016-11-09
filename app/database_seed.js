@@ -1,12 +1,6 @@
 "use strict";
 var pg = require('pg');
-var config = {
-    host: process.env.RDS_HOSTNAME,
-    port: process.env.RDS_PORT,
-    user: process.env.RDS_USERNAME,
-    password: process.env.RDS_PASSWORD,
-    database: process.env.RDS_DATABASE
-};
+var config = process.env.DB_CONFIG;
 function drop_db() {
     console.log("Starting to drop the tables in the database.");
     var client = new pg.Client(config);
@@ -44,13 +38,10 @@ function seed_db() {
                 if (err) {
                     console.log("Heroes played already exist");
                 }
-                ;
                 var query = client.query("\n              CREATE TABLE player_friends(\n                player_id INTEGER PRIMARY KEY,\n                friend_id INTEGER REFERENCES players(id)\n              )", function (err, result) {
                     if (err) {
-                        console.log(err);
                         console.log("Friends already exist");
                     }
-                    ;
                     client.end(function (err) {
                         if (err)
                             throw err;
