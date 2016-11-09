@@ -2,6 +2,9 @@
 var pg = require('pg');
 var config = process.env.DB_CONFIG;
 function check_player_existence(steamid, callback) {
+    console.log("Checking player's existence.");
+    console.log("With config: ");
+    console.log(config);
     var client = new pg.Client(config);
     client.connect(function (err) {
         if (err)
