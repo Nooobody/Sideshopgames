@@ -46,12 +46,13 @@ router.route('/update_players')
 });
 router.route('/get_players')
     .get(function (req, res) {
+    console.log(req.query);
     res.send("Hello from API!");
 });
 router.route('/get_leaderboard')
     .get(function (req, res) {
     db_actions.get_leaderboard(function (result) {
-        res.send("Test!");
+        console.log(result);
     });
 });
 router.route('/database_seed')
