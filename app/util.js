@@ -8,7 +8,7 @@ function calculateExp(player) {
     else {
         xp += 5 + minutes / 3;
     }
-    return xp;
+    return Math.round(xp);
 }
 exports.calculateExp = calculateExp;
 function db_config() {
