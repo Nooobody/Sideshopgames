@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var db = require('./database_seed');
+var db = require('./db_seed');
 var db_seed = db.seed_db;
 var db_drop = db.drop_db;
-var db_actions = require('./database_actions');
+var db_actions = require('./db_actions');
 var util = require('../util');
 var bodyParser = require('body-parser');
 var parseUrlencoded = bodyParser.urlencoded({ extended: false });

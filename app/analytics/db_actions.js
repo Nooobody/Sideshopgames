@@ -1,6 +1,6 @@
 "use strict";
 var pg = require('pg');
-var config = require('./util').db_config();
+var config = require('../util').db_config();
 function upload(data) {
     var client = new pg.Client(config);
     client.connect(function (err) {

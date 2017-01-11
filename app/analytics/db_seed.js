@@ -1,6 +1,6 @@
 "use strict";
 var pg = require('pg');
-var config = require('./util').db_config();
+var config = require('../util').db_config();
 function seed_stats_db() {
     console.log("Starting to seed the error database.");
     var client = new pg.Client(config);

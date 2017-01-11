@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var pg = require('pg');
-var config = require('./util').db_config();
 var bodyParser = require('body-parser');
 var parseUrlencoded = bodyParser.urlencoded({ extended: false });
 var db_seed = require("./db_seed");
