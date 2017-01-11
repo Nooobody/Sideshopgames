@@ -19,7 +19,7 @@ router.route('/update_players')
             player.nick = "";
         }
         db_actions.check_player_existence(player.steamid, function (result) {
-            if (result.rows.length == 0) {
+            if (result.rowCount == 0) {
                 player.exp = util.calculateExp(player);
                 db_actions.insert_new_player(player);
             }
@@ -47,12 +47,15 @@ router.route('/update_players')
 router.route('/get_players')
     .get(function (req, res) {
     console.log(req.query);
+    var players = JSON.parse(req.query.players);
+    console.log(players);
     res.send("Hello from API!");
 });
 router.route('/get_leaderboard')
     .get(function (req, res) {
     db_actions.get_leaderboard(function (result) {
         console.log(result);
+        res.send("This is the leaderboard!");
     });
 });
 router.route('/database_seed')
