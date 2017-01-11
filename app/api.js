@@ -46,7 +46,7 @@ router.route('/update_players')
 });
 router.route('/get_players')
     .get(function (req, res) {
-    console.log(req.query);
+    res.send(req.query);
     res.send("Hello from API!");
 });
 router.route('/get_leaderboard')
