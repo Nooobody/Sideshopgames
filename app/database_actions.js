@@ -24,6 +24,7 @@ function get_players(players, callback) {
         if (err)
             throw err;
         client.query("SELECT * FROM players WHERE steamid IN ($1)", [players.join(",")], function (err, result) {
+            console.log(result);
             if (err)
                 throw err;
             if (callback)
@@ -40,6 +41,7 @@ function get_leaderboard(callback) {
         if (err)
             throw err;
         client.query("SELECT * FROM players ORDER BY exp DESC LIMIT 50", function (err, result) {
+            console.log(result);
             if (err)
                 throw err;
             if (callback)
