@@ -6,6 +6,8 @@ for (secret in secrets) {
 }
 var api = require("./app/api");
 app.use("/api", api);
+var debug = require("./app/debug");
+app.use("/debug", debug);
 app.get('/', function (req, res) {
     res.send("Hello world!");
 });

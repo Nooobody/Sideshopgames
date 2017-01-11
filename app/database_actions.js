@@ -3,8 +3,6 @@ var pg = require('pg');
 var config = require('./util').db_config();
 function check_player_existence(steamid, callback) {
     console.log("Checking player's existence.");
-    console.log("With config: ");
-    console.log(config);
     var client = new pg.Client(config);
     client.connect(function (err) {
         if (err)
@@ -13,13 +11,46 @@ function check_player_existence(steamid, callback) {
             if (err)
                 throw err;
             if (callback)
-                callback(result);
+                callback(result.rows);
             client.end();
         });
     });
 }
 exports.check_player_existence = check_player_existence;
+function get_players(players, callback) {
+    console.log("Fetching players.");
+    var client = new pg.Client(config);
+    client.connect(function (err) {
+        if (err)
+            throw err;
+        client.query("SELECT * FROM players WHERE steamid IN ($1)", [players.join(",")], function (err, result) {
+            if (err)
+                throw err;
+            if (callback)
+                callback(result.rows);
+            client.end();
+        });
+    });
+}
+exports.get_players = get_players;
+function get_leaderboard(callback) {
+    console.log("Fetching leaderboard.");
+    var client = new pg.Client(config);
+    client.connect(function (err) {
+        if (err)
+            throw err;
+        client.query("SELECT * FROM players ORDER BY exp DESC LIMIT 50", function (err, result) {
+            if (err)
+                throw err;
+            if (callback)
+                callback(result.rows);
+            client.end();
+        });
+    });
+}
+exports.get_leaderboard = get_leaderboard;
 function insert_new_player(player) {
+    console.log("Inserting a new player.");
     var client = new pg.Client(config);
     client.connect(function (err) {
         if (err)
@@ -46,6 +77,7 @@ function insert_new_player(player) {
 }
 exports.insert_new_player = insert_new_player;
 function update_player(player) {
+    console.log("Updating a player.");
     var client = new pg.Client(config);
     client.connect(function (err) {
         if (err)
