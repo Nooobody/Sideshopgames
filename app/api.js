@@ -43,9 +43,15 @@ router.route('/update_players')
                 row.kills += parseInt(player.kills);
                 row.assists += parseInt(player.assists);
                 row.deaths += parseInt(player.deaths);
-                row.animals_killed += parseInt(player.animals_killed);
-                row.buildings_built += parseInt(player.buildings_built);
-                row.buildings_razed += parseInt(player.buildings_razed);
+                if (player.animals_killed) {
+                    row.animals_killed += parseInt(player.animals_killed);
+                }
+                if (player.buildings_built) {
+                    row.buildings_built += parseInt(player.buildings_built);
+                }
+                if (player.buildings_razed) {
+                    row.buildings_razed += parseInt(player.buildings_razed);
+                }
                 row.exp = util.calculateExp(player);
                 row.total_games += 1;
                 if (player.is_winner) {

@@ -51,6 +51,7 @@ function get_leaderboard(callback) {
 exports.get_leaderboard = get_leaderboard;
 function insert_new_player(player) {
     console.log("Inserting a new player.");
+    console.log(player);
     var client = new pg.Client(config);
     client.connect(function (err) {
         if (err)
@@ -71,6 +72,7 @@ function insert_new_player(player) {
         ], function (err) {
             if (err)
                 throw err;
+            console.log("Player has been inserted!");
             client.end();
         });
     });
@@ -78,6 +80,7 @@ function insert_new_player(player) {
 exports.insert_new_player = insert_new_player;
 function update_player(player) {
     console.log("Updating a player.");
+    console.log(player);
     var client = new pg.Client(config);
     client.connect(function (err) {
         if (err)
@@ -98,6 +101,7 @@ function update_player(player) {
         ], function (err) {
             if (err)
                 throw err;
+            console.log("Player has been updated!");
             client.end();
         });
     });
