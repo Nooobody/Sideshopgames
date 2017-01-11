@@ -38,6 +38,7 @@ router.route('/update_players')
                 }
                 row.name = player.name;
                 row.nick = player.nick;
+                console.log(row);
                 db_actions.update_player(row);
             }
         });
