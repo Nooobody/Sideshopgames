@@ -21,21 +21,10 @@ router.route('/update_players')
         db_actions.check_player_existence(player.steamid, function (result) {
             if (result.length == 0) {
                 player.exp = util.calculateExp(player);
-                if (player.is_winner) {
-                    player.wins = 1;
-                }
-                else {
-                    player.wins = 0;
-                }
-                if (!player.animals_killed) {
-                    player.animals_killed = 0;
-                }
-                if (!player.buildings_built) {
-                    player.buildings_built = 0;
-                }
-                if (!player.buildings_razed) {
-                    player.buildings_razed = 0;
-                }
+                player.wins = player.is_winner ? 1 : 0;
+                player.animals_killed = !player.animals_killed ? 0 : parseInt(player.animals_killed);
+                player.buildings_built = !player.buildings_built ? 0 : parseInt(player.buildings_built);
+                player.buildings_razed = !player.buildings_razed ? 0 : parseInt(player.buildings_razed);
                 db_actions.insert_new_player(player);
             }
             else {
@@ -52,7 +41,7 @@ router.route('/update_players')
                 if (player.buildings_razed) {
                     row.buildings_razed += parseInt(player.buildings_razed);
                 }
-                row.exp = util.calculateExp(player);
+                row.exp += util.calculateExp(player);
                 row.total_games += 1;
                 if (player.is_winner) {
                     row.wins += 1;
@@ -67,16 +56,15 @@ router.route('/update_players')
 });
 router.route('/get_players')
     .get(function (req, res) {
-    console.log(req.query);
     var players = JSON.parse(req.query.players);
-    console.log(players);
-    res.send("Hello from API!");
+    db_actions.get_players(players, function (result) {
+        res.send(result);
+    });
 });
 router.route('/get_leaderboard')
     .get(function (req, res) {
     db_actions.get_leaderboard(function (result) {
-        console.log(result);
-        res.send("This is the leaderboard!");
+        res.send(result);
     });
 });
 router.route('/database_seed')
