@@ -4,10 +4,12 @@ var secrets = require("./config/secrets");
 for (secret in secrets) {
     process.env[secret] = secrets[secret];
 }
-var api = require("./app/api");
+var api = require("./app/leaderboard/api");
 app.use("/api", api);
-var debug = require("./app/debug");
+var debug = require("./app/debug/debug");
 app.use("/debug", debug);
+var analytics = require("./app/analytics/analytics");
+app.use("/analytics", analytics);
 app.get('/', function (req, res) {
     res.send("Hello world!");
 });

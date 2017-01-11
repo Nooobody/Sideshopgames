@@ -1,12 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var pg = require('pg');
-var db_config = process.env.DB_CONFIG;
 var db = require('./database_seed');
 var db_seed = db.seed_db;
 var db_drop = db.drop_db;
 var db_actions = require('./database_actions');
-var util = require('./util');
+var util = require('../util');
 var bodyParser = require('body-parser');
 var parseUrlencoded = bodyParser.urlencoded({ extended: false });
 router.route('/update_players')
@@ -41,7 +39,7 @@ router.route('/update_players')
                 if (player.buildings_razed) {
                     row.buildings_razed += parseInt(player.buildings_razed);
                 }
-                row.exp = parseInt(row.exp) + util.calculateExp(player);
+                row.exp += util.calculateExp(player);
                 row.total_games += 1;
                 if (player.is_winner) {
                     row.wins += 1;

@@ -22,7 +22,7 @@ function drop_db() {
 }
 exports.drop_db = drop_db;
 function seed_db() {
-    console.log("Starting to seed the database.");
+    console.log("Starting to seed the player database.");
     var client = new pg.Client(config);
     client.connect(function (err) {
         if (err)
