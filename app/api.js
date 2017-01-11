@@ -41,7 +41,7 @@ router.route('/update_players')
                 if (player.buildings_razed) {
                     row.buildings_razed += parseInt(player.buildings_razed);
                 }
-                row.exp += util.calculateExp(player);
+                row.exp = parseInt(row.exp) + util.calculateExp(player);
                 row.total_games += 1;
                 if (player.is_winner) {
                     row.wins += 1;
