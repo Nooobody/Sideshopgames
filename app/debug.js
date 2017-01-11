@@ -8,9 +8,11 @@ router.route("/upload_bug")
     .post(parseUrlencoded, function (req, res) {
     var error = req.body.error;
     console.log(error);
+    res.send("Error received!");
 });
 router.route("/see_bug_list")
     .get(function (req, res) {
     console.log("test");
+    res.send("Errors appear here!");
 });
 module.exports = router;
