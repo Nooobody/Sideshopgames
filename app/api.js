@@ -21,6 +21,21 @@ router.route('/update_players')
         db_actions.check_player_existence(player.steamid, function (result) {
             if (result.length == 0) {
                 player.exp = util.calculateExp(player);
+                if (player.is_winner) {
+                    player.wins = 1;
+                }
+                else {
+                    player.wins = 0;
+                }
+                if (!player.animals_killed) {
+                    player.animals_killed = 0;
+                }
+                if (!player.buildings_built) {
+                    player.buildings_built = 0;
+                }
+                if (!player.buildings_razed) {
+                    player.buildings_razed = 0;
+                }
                 db_actions.insert_new_player(player);
             }
             else {
@@ -38,7 +53,6 @@ router.route('/update_players')
                 }
                 row.name = player.name;
                 row.nick = player.nick;
-                console.log(row);
                 db_actions.update_player(row);
             }
         });
