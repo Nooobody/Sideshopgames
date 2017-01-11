@@ -19,13 +19,12 @@ router.route('/update_players')
             player.nick = "";
         }
         db_actions.check_player_existence(player.steamid, function (result) {
-            console.log(result);
-            if (result.rowCount == 0) {
+            if (result.length == 0) {
                 player.exp = util.calculateExp(player);
                 db_actions.insert_new_player(player);
             }
             else {
-                var row = result.rows[0];
+                var row = result[0];
                 row.kills += parseInt(player.kills);
                 row.assists += parseInt(player.assists);
                 row.deaths += parseInt(player.deaths);
